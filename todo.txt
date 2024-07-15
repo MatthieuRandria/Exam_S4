@@ -1,0 +1,46 @@
+Partie 1
+FRONTOFFICE
+    Login Client
+        num_voiture
+        type voiture(legere,4*4,Utilitaire)
+        M: Login.php
+            checkLogin(num_voiture, type_voiture)
+            inscription automatique au premier connexion
+        V: view_login.php
+            login 2 input num_voiture, type_voiture (liste deroulante)
+        C: LoginController
+            view_login.php=>checkLogin()true => Rendez-vous Client
+                                        false => inscription=> Rendez-vous Client
+    Prise de rendez-vous
+        M: RendezVous.php
+        rendez-vous(date et heure debut, choix type service)
+            check si disponible
+                attribue automatiquement le slot libre (check Slot)
+        V: view_rendezvous.php
+            formulaire
+            choix date et heure
+            choix type de service (liste_deroulante)
+        C:  RendezVousController.php
+            view_rendezvous.php => rendez-vous => true => ok
+                                                   false => non disponible
+    Impression PDF du devis 
+BACKOFFICE
+    CRUD des services
+        M: insert, delete, update, getAll
+        V: formulaire, tableau
+        C: CRUD.php
+    Configuration de la date de reference
+        M: referenceDate(date du jour)
+        V: formulaire date
+        C: Reference.php
+    Liste des devis
+        M: entrer date de paiement >= date rendez-vous
+        V:  tableau pour la liste
+            formulaire pour entrer la date
+        C: Devis.php
+    Liste des rendez-vous
+        M:  getAllRendez vous
+            sous forme de calendrier
+            rajouter rdv sur le calendrier => parmi les clients enregistres
+        V:  calendrier https://fullcalendar.io
+        C: ListeRendezVous.php
